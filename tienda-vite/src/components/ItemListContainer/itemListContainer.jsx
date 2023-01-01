@@ -45,7 +45,7 @@ const ItemListContainer = ({greetings}) => {
     const useFetch = async () => {
         const answ = await fetch('https://pokeapi.co/api/v2/ability/?limit=10&offset=10')
         const answJson = answ.json()
-        console.log(answJson)
+        setPoke(answJson)
         }
 
     useEffect (()=>{
