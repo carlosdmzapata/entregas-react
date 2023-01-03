@@ -4,6 +4,7 @@ import HeadBannerComponent from './components/pages/headBanner/headBannerContain
 import Titulo from './components/titulo/titulo'
 import NavBar from './components/NavBar/navBar'
 import ItemListContainer from './components/ItemListContainer/itemListContainer'
+import ItemDetail from './components/ItemDetailContainer/ItemDetail'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,6 +15,7 @@ function App() {
     <>
        <NavBar />    
        <ItemListContainer greetings = {'¡Hello!'} /> 
+       <ItemDetail Produ = {'T-SHIRT'} />
     </>
   )
 }

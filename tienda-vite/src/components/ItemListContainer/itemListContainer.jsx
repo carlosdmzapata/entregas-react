@@ -43,13 +43,18 @@ const ItemListContainer = ({greetings}) => {
     const [poke, setPoke] = useState([])
 
     const useFetch = async () => {
-        const answ = await fetch('https://pokeapi.co/api/v2/ability/?limit=10&offset=10')
-        const answJson = answ.json()
-        setPoke(answJson)
+        try {
+            const answ = await fetch('https://pokeapi.co/api/v2/ability/?limit=10&offset=10')
+            const answJson = await answ.json()
+            setPoke(answJson) 
+        } catch (error) {
+            console.log(error)
+        }
+        
         }
 
     useEffect (()=>{
-        useFetch()
+        useFetch() 
     }, [])
     console.log(poke)
 
@@ -92,9 +97,30 @@ const ItemListContainer = ({greetings}) => {
             {loading ? 
                <h2>Loading....</h2>
                :
-               products.map(product => <li key={product.id}>{product.name}</li>)
+               products.map(product =>  <div
+                 style={{marginLeft:100}}
+                 className='col-md-3'
+                 key={product.id}
+               >
+
+                <div className="card w-100 mt-5" >
+                    <div className="card-header">
+                        {`${product.name} - ${product.description}`}
+                    </div>
+                    <div className="card-body">
+                        <img src="product.foto" alt="" className='w-50' />
+                        {product.price}
+                    </div>
+                    <div className='card-footer'>
+                        <button className='btn btn-outline-primary'>
+                            detalle del producto
+                        </button>
+                    </div>
+                </div>
+
+               </div> )
                }
-            {poke.map(pok => <li key={pok.id}>{pok.name}</li>)}
+            
         </section>
     )
 }
