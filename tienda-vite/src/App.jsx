@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import HeadBannerComponent from './components/pages/headBanner/headBannerContainer'
-import Titulo from './components/titulo/titulo'
+import{BrowserRouter, Route, Routes} from 'react-router-dom'
+
+
 import NavBar from './components/NavBar/navBar'
 import ItemListContainer from './components/ItemListContainer/itemListContainer'
 import ItemDetail from './components/ItemDetailContainer/ItemDetail'
@@ -12,11 +11,13 @@ function App() {
 
 
   return (
-    <>
-       <NavBar />    
-       <ItemListContainer greetings = {'¡Hello!'} /> 
-       <ItemDetail Produ = {'T-SHIRT'} />
-    </>
+    <BrowserRouter>
+     <NavBar />
+     <Routes>   
+      <Route path='/' element={<ItemListContainer greetings = {'¡Hello!'} />} />
+      <Route path='/detalle' element={<ItemDetail Produ = {'T-SHIRT'} />} />
+     </Routes>
+    </BrowserRouter>
   )
 }
 

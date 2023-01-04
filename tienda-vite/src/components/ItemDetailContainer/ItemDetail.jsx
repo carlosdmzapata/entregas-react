@@ -23,7 +23,7 @@ const ItemDetail = ({Produ}) => {
 
     const [products, setProducts] = useState([])
     useEffect (()=>{
-    gFetch()
+    gFetch() 
     .then(answer => answer)
     .then(dataProducts => setProducts(dataProducts))
     .catch(error => console.log(error))

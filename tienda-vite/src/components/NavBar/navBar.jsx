@@ -54,6 +54,7 @@ const NavBar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Nav.Link href="#action1">Cart</Nav.Link>
         </div>
     )
 }
