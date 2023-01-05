@@ -1,20 +1,25 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import HeadBannerComponent from './components/pages/headBanner/headBannerContainer'
-import Titulo from './components/titulo/titulo'
+import{BrowserRouter, Route, Routes} from 'react-router-dom'
+
+
 import NavBar from './components/NavBar/navBar'
 import ItemListContainer from './components/ItemListContainer/itemListContainer'
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CartContainer from './components/Cart Container/CartContainer'
 
 function App() {
 
 
   return (
-    <>
-       <NavBar />    
-       <ItemListContainer greetings = {'¡Hello!'} /> 
-    </>
+    <BrowserRouter>
+     <NavBar />
+     <Routes>   
+      <Route path='/' element={<ItemListContainer greetings = {'¡Hello!'} />} />
+      <Route path='/detail' element={<ItemDetailContainer />} />
+      <Route path='/cart' element={<CartContainer />} />
+     </Routes>
+    </BrowserRouter>
   )
 }
 

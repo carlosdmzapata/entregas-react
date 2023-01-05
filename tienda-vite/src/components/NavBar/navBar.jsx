@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+
 const NavBar = () => {
     return(
         <div className='sectionBar'>
@@ -54,6 +55,7 @@ const NavBar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Nav.Link href="#action1">Cart</Nav.Link>
         </div>
     )
 }
