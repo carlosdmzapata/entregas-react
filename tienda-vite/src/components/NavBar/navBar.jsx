@@ -6,12 +6,13 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link, NavLink } from 'react-router-dom';
 
 
 const NavBar = () => {
-    return(
-        <div className='sectionBar'>
-            <Navbar bg="light" expand="lg">
+  return(
+    <div className='sectionBar'>
+      <Navbar bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand href="#">TRIBE STORE</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -21,19 +22,24 @@ const NavBar = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
+            <NavLink className={({isActive})=> isActive ? 'btn btn-primary' : 'btn btn-outline-primary' } to='/'>
+              Home
+            </NavLink>
+            
             <NavDropdown title="MEN" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">T-shirts</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Caps
-              </NavDropdown.Item>
+              <NavLink className= 'btn btn-outline-primary' to='/category/t-shirts'>
+                T-shirts
+              </NavLink>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Shipping Cart
-              </NavDropdown.Item>
+              <NavLink className= 'btn btn-outline-primary' to='/category/caps'>
+                Caps
+              </NavLink>
             </NavDropdown>
-            <NavDropdown title="WOMAN" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Sweaters</NavDropdown.Item>
+            
+            <NavDropdown title="WOMEN" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action3">
+                Sweaters
+              </NavDropdown.Item>
               <NavDropdown.Item href="#action4">
                 Shoes
               </NavDropdown.Item>
@@ -43,6 +49,7 @@ const NavBar = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
+
           <Form className="d-flex">
             <Form.Control
               type="search"
@@ -52,12 +59,16 @@ const NavBar = () => {
             />
             <Button variant="outline-success">Search</Button>
           </Form>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    <Nav.Link href="#action1">Cart</Nav.Link>
-        </div>
-    )
+
+    <NavLink className={({isActive})=> isActive ? 'btn btn-primary' : 'btn btn-outline-primary' } to='/cart'>
+      Cart
+    </NavLink>
+    </div>
+  )
 }
 
 export default NavBar
