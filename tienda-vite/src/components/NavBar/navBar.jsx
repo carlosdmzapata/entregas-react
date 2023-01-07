@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link, NavLink } from 'react-router-dom';
+import CartWidget from '../CartWidget/CartWidget';
 
 
 const NavBar = () => {
@@ -63,11 +64,9 @@ const NavBar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-
-    <NavLink className={({isActive})=> isActive ? 'btn btn-primary' : 'btn btn-outline-primary' } to='/cart'>
-      Cart
-    </NavLink>
+    <CartWidget />
     </div>
+    
   )
 }
 
