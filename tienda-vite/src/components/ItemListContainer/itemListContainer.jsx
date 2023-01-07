@@ -18,7 +18,7 @@ const ItemListContainer = ({greetings}) => {
 
             gFetch()
             //.then(answer => answer)
-            .then(dataProducts => setProducts(dataProducts.filter(product => product.description === id)))
+            .then(dataProducts => setProducts(dataProducts.filter(product => product.category === id)))
             .catch(error => console.log(error))
             .finally(()=>setLoading(false))
 

@@ -1,34 +1,39 @@
 import {useState} from 'react'
 
     
- const ItemCount = () =>  { 
+ const ItemCount = ({stock=20, initial=1, onAdd}) =>  { 
 
-    const [count, setCount] = useState(0)
-    const [boolean, setBoolean] = useState(true)
+    const [count, setCount] = useState(initial)
+    
 
 
     const handleCounter2 = () => {
+        if(count > initial){
         setCount(count-1)
+      }
      }
 
     const handleCounter = () => {
-        setCount(count+1)
+        if(count < stock){
+            setCount(count+1)
+          }
      }
 
-    const handleBoolean = () => {
-        setBoolean(!boolean)
-     }
-     console.log(boolean)
  
 
     return(
-        <section className="section">
-            <p className='alert alert-danger'>{count}</p>
-            <button className='btn btn-outline-primary' onClick={handleCounter2}>-</button>
-            <button className='btn btn-outline-primary' onClick={handleCounter}>+</button>
-            <br />
-            <button className='btn btn-outline-primary' onClick={handleBoolean}>Comprar</button>
-        </section>
+        <div className="card m-5">
+            <div className='card-header'>
+              <label htmlFor=''>{count}</label>
+            </div>
+            <div className='card-body'>
+              <button className='btn btn-outline-primary' onClick={handleCounter2}>-</button>
+              <button className='btn btn-outline-primary' onClick={handleCounter}>+</button>
+            </div>
+            <div className='card-footer'>
+              <button className='btn btn-outline-success' onClick={() => onAdd(count) }>Agregar al carrito</button>
+            </div>
+        </div>
     )
 
 }

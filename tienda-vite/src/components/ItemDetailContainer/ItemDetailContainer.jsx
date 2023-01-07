@@ -15,7 +15,11 @@ const ItemDetailContainer = () => {
     .then(dataProduct => setProduct(dataProduct.find(product => product.id === productid )))
     .catch(error => console.log(error))
     })
-    console.log("product", product)
+    
+    const onAdd = (quant) => {
+        console.log('La cantidad seleccionada es', quant)
+    }
+
 
     return(
         <div className="container border border-3 border-primary rounded">
@@ -27,7 +31,7 @@ const ItemDetailContainer = () => {
                     <h4>Price: {product.price}</h4>
                 </div>
                  <div className='col'>
-                    <ItemCount />
+                    <ItemCount stock={19} initial={1} onAdd={onAdd} />
                  </div>
                 </div>       
         </div>
