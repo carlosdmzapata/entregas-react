@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link, NavLink } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
+import { Input } from '../Input/Input';
 
 
 const NavBar = () => {
@@ -64,6 +65,7 @@ const NavBar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Input />
     <CartWidget />
     </div>
     

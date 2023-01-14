@@ -18,7 +18,9 @@ const ItemDetailContainer = () => {
     
 
     return(
+        <div className='border border-5 border-success'>
         <ItemDetail product={product} />
+        </div>
     )
 }
 

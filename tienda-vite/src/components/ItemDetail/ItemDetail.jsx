@@ -1,13 +1,19 @@
 import React from "react"
+import { useCartContext } from "../../Context/CartContext"
+import Interchangeability from "../Intercambiabilidad/Interchangeability"
 import ItemCount from "../ItemCount/ItemCount"
 
 
-const onAdd = (quant) => {
-    console.log('La cantidad seleccionada es', quant)
-}
-
-
 const ItemDetail = ({product}) => {
+
+    const {addToCart} = useCartContext()
+    
+    const onAdd = (quant) => {
+        console.log('La cantidad seleccionada es', quant)
+        addToCart({...product, quant})
+    }
+
+
     return(
         <div className="container border border-3 border-primary rounded">
             <div className='row'>
@@ -19,10 +25,12 @@ const ItemDetail = ({product}) => {
                 </div>
                  <div className='col'>
                     <ItemCount stock={19} initial={1} onAdd={onAdd} />
+                    <Interchangeability />
                  </div>
                 </div>       
         </div>
     )
 }
+
 
 export default ItemDetail
