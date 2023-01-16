@@ -1,6 +1,11 @@
+import { memo } from "react"
 import { Link } from "react-router-dom"
 
-function Item({product}){
+const Item = memo(
+
+  ({product})=>{
+  console.log('item')
+
     return (
       <div style={{marginLeft:100}} className='col-md-3'>
         
@@ -26,5 +31,5 @@ function Item({product}){
     </div>
     )
   }
-
+)
   export default Item

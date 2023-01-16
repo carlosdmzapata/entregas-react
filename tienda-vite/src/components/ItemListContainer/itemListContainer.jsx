@@ -7,12 +7,13 @@ import './itemListContainer.css'
 
 const ItemListContainer = ({greetings}) => {
 
+    const [bool, setBool] = useState (true)
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
 
     const {id} = useParams()
 
-    
+    console.log('itemListContainer')
 
     useEffect (()=>{
         if (id) {
@@ -32,6 +33,18 @@ const ItemListContainer = ({greetings}) => {
         }
 
     }, [id])
+
+    const handleClick=(e) => {
+        e.preventDefault()
+        setBool(!bool)
+    }
+
+    const handleAdd =()=>{
+        setProducts ([
+            ...products,
+            {id: products.length +1, name: 'Cap 7', url: 'https://remerasya.com/pub/media/catalog/product/cache/e4d6' }
+        ])
+    }
    
  
 
@@ -39,10 +52,15 @@ const ItemListContainer = ({greetings}) => {
         <section className="section">
             <label>{greetings}</label>
 
+            <button onClick={handleClick}>Change State</button>
+            <button onClick={handleAdd}>Add Item</button>
+
             {loading ? 
                <h2>Loading....</h2>
                :
+              
                <ItemList products= {products} />
+               
                }
             
         </section>
