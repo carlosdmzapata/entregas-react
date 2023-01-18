@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
+import {collection, doc, getDoc, getDocs, getFirestore, limit, query, where} from 'firebase/firestore'
 import gFetch from '../../assets/Fetch'
 import ItemList from '../ItemList/ItemList'
 import './itemListContainer.css'
@@ -16,21 +17,22 @@ const ItemListContainer = ({greetings}) => {
     console.log('itemListContainer')
 
     useEffect (()=>{
-        if (id) {
-
-            gFetch()
-            //.then(answer => answer)
-            .then(dataProducts => setProducts(dataProducts.filter(product => product.category === id)))
-            .catch(error => console.log(error))
-            .finally(()=>setLoading(false))
-
-        } else {
-            gFetch()
-            //.then(answer => answer)
-            .then(dataProducts => setProducts(dataProducts))
-            .catch(error => console.log(error))
-            .finally(()=>setLoading(false))
-        }
+        
+           const db = getFirestore()
+           const queryCollection = collection(db, 'products')
+           
+           if (id){
+           const queryFilter = query(queryCollection, where('category', '==', id))
+           getDocs(queryFilter)
+           .then(answ => setProducts(answ.docs.map(product => ({id: product.id, ...product.data()}) )))
+           .catch(err => console.log() )
+           .finally(()=> setLoading(false))
+           } else {
+            getDocs(queryCollection)
+           .then(answ => setProducts(answ.docs.map(product => ({id: product.id, ...product.data()}) )))
+           .catch(err => console.log(err) )
+           .finally(()=> setLoading(false))
+           }
 
     }, [id])
 
@@ -45,6 +47,8 @@ const ItemListContainer = ({greetings}) => {
             {id: products.length +1, name: 'Cap 7', url: 'https://remerasya.com/pub/media/catalog/product/cache/e4d6' }
         ])
     }
+
+    console.log(products)
    
  
 

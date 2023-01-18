@@ -14,7 +14,7 @@ const Item = memo(
              {`${product.name} - ${product.description}`}
          </div>
          <div className="card-photo">
-           <img src={`${product.foto}`} alt="" className='w-50' />
+           <img src={`${product.photo}`} alt="" className='w-50' />
          </div>
          <div className="card-body">
              {product.price}
