@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import gFetch from '../../assets/Fetch'
 import { useParams } from 'react-router-dom'
 import ItemDetail from '../ItemDetail/ItemDetail'
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
 
 
 const ItemDetailContainer = () => {
@@ -11,10 +12,13 @@ const ItemDetailContainer = () => {
     const {productid} = useParams()
     
     useEffect (()=>{
-    gFetch()
-    .then(dataProduct => setProduct(dataProduct.find(product => product.id === productid )))
-    .catch(error => console.log(error))
-    })
+    const db = getFirestore()
+    const queryDoc = doc(db, 'products', productid)
+    getDoc(queryDoc)
+    .then(answ => setProduct({id: answ.id, ...answ.data()}))
+    .catch(err => console.log(err))
+    .finally(()=>setLoading(false))
+    }, [])
     
 
     return(

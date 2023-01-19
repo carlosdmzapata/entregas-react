@@ -4,7 +4,7 @@ import { useCartContext } from '../../Context/CartContext'
 
 const CartContainer = () => {
 
-    const {cartList, emptyCart} = useCartContext()
+    const {cartList, emptyCart, totalPrice} = useCartContext()
 
     return(
         <div>
@@ -17,6 +17,7 @@ const CartContainer = () => {
                                 Name:{prod.name} - Category:{prod.category} - price:{prod.price} - quantity: {prod.quant}
                                 </div>     
                                 )}
+                                <h4>Total price is: {totalPrice} </h4>
                                 <button className='btn btn-danger' onClick= {emptyCart}>Empty Cart</button>
         </div>
     )
