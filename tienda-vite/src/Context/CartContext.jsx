@@ -1,4 +1,5 @@
 import { useContext, createContext, useState } from "react";
+import {gFetch} from '../assets/Fetch'
 
 const CartContext = createContext([])
 
@@ -15,7 +16,7 @@ export const CartContextProvider = ({children}) => {
         const idx = isInCart()
 
         if (idx !== -1 ){
-          cartList(idx).quant += product.quant
+          cartList[idx].quant += product.quant
           setCartList([...cartList])
         } else {
             setCartList([...cartList, product])

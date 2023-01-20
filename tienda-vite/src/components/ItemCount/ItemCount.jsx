@@ -35,7 +35,7 @@ import {useState} from 'react'
               <button className='btn btn-outline-primary' onClick={handleCounter}>+</button>
             </div>
             <div className='card-footer'>
-              <button className='btn btn-outline-success' onClick={ handleOnAdd }>Agregar al carrito</button>
+              <button className='btn btn-outline-success' onClick={ handleOnAdd }>Add to Cart</button>
             </div>
         </div>
     )

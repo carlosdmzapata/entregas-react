@@ -1,16 +1,19 @@
-import React from "react"
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import { useCartContext } from "../../Context/CartContext"
-import Interchangeability from "../Intercambiabilidad/Interchangeability"
 import ItemCount from "../ItemCount/ItemCount"
 
 
 const ItemDetail = ({product}) => {
+
+    const [isQuant, setIsQuant] = useState(false)
 
     const {addToCart} = useCartContext()
     
     const onAdd = (quant) => {
         console.log('La cantidad seleccionada es', quant)
         addToCart({...product, quant})
+        setIsQuant(true)
     }
 
 
@@ -22,10 +25,21 @@ const ItemDetail = ({product}) => {
                     <h3>Name: {product.name}</h3>
                     <h3>Description: {product.description}</h3>
                     <h4>Price: {product.price}</h4>
+                    <h4>Stock: {product.stock}</h4>
                 </div>
                  <div className='col'>
-                    <ItemCount stock={19} initial={1} onAdd={onAdd} />
-                    <Interchangeability />
+                    {isQuant ?
+                    <>
+                    <Link to='/cart'>
+                    <button className="btn btn-outline-primary">Checkout</button>
+                    </Link>
+                    <Link to='/'>
+                    <button className="btn btn-outline-success">Keep Shopping</button>
+                    </Link>
+                    </> 
+                    :
+                    <ItemCount stock={product.stock} initial={1} onAdd={onAdd} />
+                    }
                  </div>
                 </div>       
         </div>

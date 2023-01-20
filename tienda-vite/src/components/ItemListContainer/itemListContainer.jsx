@@ -10,6 +10,7 @@ const ItemListContainer = ({greetings}) => {
 
     const [bool, setBool] = useState (true)
     const [products, setProducts] = useState([])
+    const [product, setProduct] = useState({})
     const [loading, setLoading] = useState(true)
 
     const {id} = useParams()
@@ -22,7 +23,7 @@ const ItemListContainer = ({greetings}) => {
            const queryCollection = collection(db, 'products')
            
            if (id){
-           const queryFilter = query(queryCollection, where('category', '==', id))
+           const queryFilter = query(queryCollection, where('category', '==', id), where('isActive', '==', true))
            getDocs(queryFilter)
            .then(answ => setProducts(answ.docs.map(product => ({id: product.id, ...product.data()}) )))
            .catch(err => console.log() )

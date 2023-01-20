@@ -11,7 +11,7 @@ const Item = memo(
         
        <div className="card w-100 mt-5" >
          <div className="card-header">
-             {`${product.name} - ${product.description}`}
+             {`${product.name} - ${product.category}`}
          </div>
          <div className="card-photo">
            <img src={`${product.photo}`} alt="" className='w-50' />
@@ -21,8 +21,8 @@ const Item = memo(
          </div>
          <div className='card-footer'>
             <Link to={`/detail/${product.id}`}>
-              <button className='btn btn-outline-primary'>
-                 detalle del producto
+              <button className='btn btn-outline-primary btn-block'>
+                 Product Detail
               </button>
             </Link>
          </div>
