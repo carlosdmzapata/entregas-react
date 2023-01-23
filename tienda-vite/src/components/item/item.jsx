@@ -1,11 +1,35 @@
-function Item({saludo}){
+import { memo } from "react"
+import { Link } from "react-router-dom"
+
+const Item = memo(
+
+  ({product})=>{
+  console.log('item')
+
     return (
-      <div>
-        <h1>Item</h1>
-        <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png?w=826&t=st=1672197019~exp=1672197619~hmac=56cf91036e5ccccbf186929e8a0a9706423bc2aa4f5b13b7c5e6b8564ad4be0b" alt="carrito" />
-        <button onClick={saludo}>Saludar</button>
+      <div style={{marginLeft:100}} className='col-md-3'>
+        
+       <div className="card w-100 mt-5" >
+         <div className="card-header">
+             {`${product.name} - ${product.category}`}
+         </div>
+         <div className="card-photo">
+           <img src={`${product.photo}`} alt="" className='w-50' />
+         </div>
+         <div className="card-body">
+             {product.price}
+         </div>
+         <div className='card-footer'>
+            <Link to={`/detail/${product.id}`}>
+              <button className='btn btn-outline-primary btn-block'>
+                 Product Detail
+              </button>
+            </Link>
+         </div>
       </div>
+
+    </div>
     )
   }
-
+)
   export default Item

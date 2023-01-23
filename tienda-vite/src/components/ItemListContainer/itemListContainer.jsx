@@ -1,124 +1,70 @@
 import {useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom'
+import {collection, doc, getDoc, getDocs, getFirestore, limit, query, where} from 'firebase/firestore'
+import ItemList from '../ItemList/ItemList'
 import './itemListContainer.css'
 
 
-const products = [
-    { id: '1', name: 'T-shirt', description: 'Anime Shirt', stock: 15},
-    { id: '2', name: 'Cap', description: 'Baseball cap', stock: 12},
-    { id: '3', name: 'Shoes', description: 'snickers for woman', stock: 18},
-    { id: '4', name: 'Sweater', description: 'Cotton Sweater', stock: 7}
-]
-
-
-const gFetch = ()=>{ 
-    return new Promise( (resolve, reject)=>{
-       const condition = true
-       if (condition) {
-        setTimeout(()=>{
-           resolve(products)
-        }, 4000)
-       } else {
-           reject('canceled')
-         }
-   }) 
-}
-
 const ItemListContainer = ({greetings}) => {
 
+    const [bool, setBool] = useState (true)
     const [products, setProducts] = useState([])
+    const [product, setProduct] = useState({})
     const [loading, setLoading] = useState(true)
+
+    const {id} = useParams()
+
+    console.log('itemListContainer')
+
     useEffect (()=>{
-    gFetch()
-    .then(answer => answer)
-    .then(dataProducts => setProducts(dataProducts))
-    .catch(error => console.log(error))
-    .finally(()=>setLoading(false))
-    }, [])
-    console.log(products)
-
-    const [count, setCount] = useState(0)
-    const [boolean, setBoolean] = useState(true)
-
-
-    const [poke, setPoke] = useState([])
-
-    const useFetch = async () => {
-        try {
-            const answ = await fetch('https://pokeapi.co/api/v2/ability/?limit=10&offset=10')
-            const answJson = await answ.json()
-            setPoke(answJson) 
-        } catch (error) {
-            console.log(error)
-        }
         
-        }
+           const db = getFirestore()
+           const queryCollection = collection(db, 'products')
+           
+           if (id){
+           const queryFilter = query(queryCollection, where('category', '==', id), where('isActive', '==', true))
+           getDocs(queryFilter)
+           .then(answ => setProducts(answ.docs.map(product => ({id: product.id, ...product.data()}) )))
+           .catch(err => console.log(err) )
+           .finally(()=> setLoading(false))
+           } else {
+            getDocs(queryCollection)
+           .then(answ => setProducts(answ.docs.map(product => ({id: product.id, ...product.data()}) )))
+           .catch(err => console.log(err) )
+           .finally(()=> setLoading(false))
+           }
 
-    useEffect (()=>{
-        useFetch() 
-    }, [])
-    console.log(poke)
+    }, [id])
 
-    useEffect (()=>{
-        console.log('Another API Call')
-    }, [boolean])
+    const handleClick=(e) => {
+        e.preventDefault()
+        setBool(!bool)
+    }
 
-    //useEffect(()=>{
-      //  console.log('addEventlisterner(evento, funci')
-       // return ()=>{
-          //  console.log('removeEventListener')
-      //  }
-    // })
+    const handleAdd =()=>{
+        setProducts ([
+            ...products,
+            {id: products.length +1, name: 'Cap 7', url: 'https://www.remerasya.com/pub/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/r/e/remera_negra_lisa.jpg', category: 'Caps', price: 2 }
+        ])
+    }
 
-  
-    const handleCounter2 = () => {
-        setCount(count-1)
-     }
-
-    const handleCounter = () => {
-        setCount(count+1)
-     }
-
-    const handleBoolean = () => {
-        setBoolean(!boolean)
-     }
-     console.log(boolean)
+    console.log(products)
+   
  
 
     return(
         <section className="section">
-            ItemListContainer
-            <br />
             <label>{greetings}</label>
-            <p className='alert alert-danger'>{count}</p>
-            <button className='btn btn-outline-primary' onClick={handleCounter2}>-</button>
-            <button className='btn btn-outline-primary' onClick={handleCounter}>+</button>
-            <br />
-            <button className='btn btn-outline-primary' onClick={handleBoolean}>Change</button>
+
+            <button onClick={handleClick}>Change State</button>
+            <button onClick={handleAdd}>Add Item</button>
+
             {loading ? 
                <h2>Loading....</h2>
                :
-               products.map(product =>  <div
-                 style={{marginLeft:100}}
-                 className='col-md-3'
-                 key={product.id}
-               >
-
-                <div className="card w-100 mt-5" >
-                    <div className="card-header">
-                        {`${product.name} - ${product.description}`}
-                    </div>
-                    <div className="card-body">
-                        <img src="product.foto" alt="" className='w-50' />
-                        {product.price}
-                    </div>
-                    <div className='card-footer'>
-                        <button className='btn btn-outline-primary'>
-                            detalle del producto
-                        </button>
-                    </div>
-                </div>
-
-               </div> )
+              
+               <ItemList products= {products} />
+               
                }
             
         </section>
