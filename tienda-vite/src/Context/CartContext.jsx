@@ -10,10 +10,8 @@ export const CartContextProvider = ({children}) => {
 
     const [cartList, setCartList] = useState([])
 
-    const isInCart = () => cartList.findIndex(prod => prod.id == product.id)
-
     const addToCart = (product) => {
-        const idx = isInCart()
+        const idx = cartList.findIndex(prod => prod.id == product.id)
 
         if (idx !== -1 ){
           cartList[idx].quant += product.quant
