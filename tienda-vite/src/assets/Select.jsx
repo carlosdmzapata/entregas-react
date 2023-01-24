@@ -18,3 +18,4 @@ export default function Select ({options, onSelect, defaultOption=1}) {
         </> ))
 
     }
+
