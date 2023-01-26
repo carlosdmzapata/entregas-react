@@ -39,16 +39,15 @@ const NavBar = () => {
             </NavDropdown>
             
             <NavDropdown title="WOMEN" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">
+              <NavLink className= 'btn btn-outline-primary' to='/category/sweaters'>
                 Sweaters
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Shoes
-              </NavDropdown.Item>
+              </NavLink>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Shipping Cart
-              </NavDropdown.Item>
+              <NavLink className= 'btn btn-outline-primary' to='/category/shoes'>
+                Shoes
+              </NavLink>
+             
+              
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

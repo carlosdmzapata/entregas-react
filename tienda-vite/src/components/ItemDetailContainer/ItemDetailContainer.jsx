@@ -3,6 +3,7 @@ import gFetch from '../../assets/Fetch'
 import { useParams } from 'react-router-dom'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { doc, getDoc, getFirestore } from 'firebase/firestore'
+import Loading from '../Loading/Loading'
 
 
 const ItemDetailContainer = () => {
@@ -23,7 +24,7 @@ const ItemDetailContainer = () => {
 
     return(
         <div className='border border-5 border-success'>
-        <ItemDetail product={product} />
+        {loading ? <Loading/> : <ItemDetail product={product} />}
         </div>
     )
 }

@@ -15,7 +15,7 @@ const ItemListContainer = ({greetings}) => {
 
     const {id} = useParams()
 
-    console.log('itemListContainer')
+    //console.log('itemListContainer')
 
     useEffect (()=>{
         
@@ -49,7 +49,7 @@ const ItemListContainer = ({greetings}) => {
         ])
     }
 
-    console.log(products)
+   // console.log(products)
    
  
 

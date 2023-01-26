@@ -18,7 +18,7 @@ const CartContainer = () => {
     const addOrder = (e) => {
         e.preventDefault()
         const order = {}
-        order.buyer = {name: 'Carlos', phone: '3333333', email: 'carlos@gmail.com'}
+        order.buyer = dataForm
         order.price = totalPrice()
         order.items = cartList.map( ( { id, price, name } ) => ( {id, price, name} ) )
         console.log (order)
@@ -75,17 +75,19 @@ const CartContainer = () => {
                                     <input type="text" onChange={handleOnChange} name='name' value={dataForm.name} placeholder='input your name' />
                                     <input type="text" onChange={handleOnChange} name='phone' value={dataForm.phone} placeholder='input your phone' />
                                     <input type="text" onChange={handleOnChange} name='email' value={dataForm.email} placeholder='input your email' />
+                                    <button className='btn btn-success'>Buy</button>
                                 </form>
                                 <button className='btn btn-outline-danger' onClick= {emptyCart}>Empty Cart</button>
-                                <button className='btn btn-success'>Buy</button>
+                                
 
             </>
             
             :
 
             <>
-              <h2>Home</h2>
-              <Link to= '/'>Products</Link>
+              <Link to= '/'>
+              <button className='btn btn-danger'>Back To Home</button>
+              </Link>
             </>
             }
         </div>
