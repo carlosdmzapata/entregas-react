@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Carlos Morales</h1>
 <h3 align="center">A passionate fullstack developer from Colombia</h3>
 
-- 🔭 I’m currently working on an ecommerce page [TRIBE-STORE](https://splendorous-genie-a82a15.netlify.app/)
+- 🔭 I’m currently working on an ecommerce page [TRIBE-STORE](https://zingy-kulfi-df28be.netlify.app/)
 
 - This project uses react-router-dom 6.6.1 for routing.
 
