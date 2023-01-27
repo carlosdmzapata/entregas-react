@@ -15,8 +15,6 @@ const ItemListContainer = ({greetings}) => {
 
     const {id} = useParams()
 
-    //console.log('itemListContainer')
-
     useEffect (()=>{
         
            const db = getFirestore()
@@ -49,16 +47,10 @@ const ItemListContainer = ({greetings}) => {
         ])
     }
 
-   // console.log(products)
-   
- 
 
     return(
         <section className="section">
             <label>{greetings}</label>
-
-            <button onClick={handleClick}>Change State</button>
-            <button onClick={handleAdd}>Add Item</button>
 
             {loading ? 
                <h2>Loading....</h2>
